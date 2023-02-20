@@ -1,14 +1,27 @@
 import React from 'react';
+import { useSession } from 'next-auth/react';
 import { client } from '../lib/client';
 
 import { Product, FooterBanner, HeroBanner } from '../components';
-
-//  timestamp
+import ContactBanner from '../components/ContactBanner';
+import WhyUs from '../components/WhyUs';
 
 const Home = ({ products, bannerData }) => {
+  const { data: session } = useSession();
+
+  console.log('session', session);
   return (
     <>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
+
+      {/* HERE WE WILL CONDITIONAL RENEDER WHAT THE USER WILL SEE AND WHAT THE GUEST USER WILL SEE */}
+      {session ? (
+        <div>
+          <h3>{session.user.name}</h3> <h3>{session.user.email}</h3>
+        </div>
+      ) : (
+        <h3>Guest User</h3>
+      )}
 
       <div className="products-heading">
         <h2>Best Selling Products</h2>
@@ -22,6 +35,10 @@ const Home = ({ products, bannerData }) => {
       </div>
 
       <FooterBanner footerBanner={bannerData && bannerData[0]} />
+
+      <WhyUs />
+
+      <ContactBanner />
     </>
   );
 };

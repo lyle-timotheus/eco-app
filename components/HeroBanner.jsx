@@ -4,7 +4,7 @@ import { urlFor } from '../lib/client';
 
 const HeroBanner = ({ heroBanner }) => {
   return (
-    <div className="hero-banner-container">
+    <div className="hero-banner-container bg-purple-300">
       <div>
         <p className="beats-solo">{heroBanner.smallText}</p>
         <h3>{heroBanner.midText}</h3>
@@ -17,7 +17,12 @@ const HeroBanner = ({ heroBanner }) => {
 
         <div>
           <Link href={`/product/${heroBanner.product}`}>
-            <button type="button">{heroBanner.buttonText}</button>
+            <button
+              type="button"
+              className="group relative flex justify-center rounded-md border border-transparent bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              {heroBanner.buttonText}
+            </button>
           </Link>
           <div className="desc">
             <h5>Zootylala</h5>

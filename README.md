@@ -1,3 +1,13 @@
+WHAT I NEED TO DO:
+
+1. Figure out how to handle errors in console
+2. How to add email magic link to signin page
+3. add more validation for sigin and login pages
+
+https://www.youtube.com/watch?v=t0Fs0NO78X8&t=4921s
+https://www.youtube.com/watch?v=uLjS5DVgSvc
+https://www.youtube.com/watch?v=AI9jExb5dDA
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
