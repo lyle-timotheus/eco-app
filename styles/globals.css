@@ -46,9 +46,9 @@ button {
 .right-side-nav-container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  width: 100%;
-  max-width: 100px;
+  align-items: center;
+  /* width: 100%;
+  max-width: 100px; */
 }
 .marquee-text {
   font-size: 29px;

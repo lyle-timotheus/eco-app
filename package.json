@@ -10,6 +10,7 @@
     "export": "npm run build && next export"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.11",
     "@next-auth/mongodb-adapter": "^1.1.1",
     "@sanity/client": "^4.0.1",
     "@sanity/image-url": "^1.0.2",

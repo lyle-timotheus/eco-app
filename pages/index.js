@@ -6,7 +6,8 @@ import { Product, FooterBanner, HeroBanner } from '../components';
 import ContactBanner from '../components/ContactBanner';
 import WhyUs from '../components/WhyUs';
 
-const Home = ({ products, bannerData }) => {
+const Home = ({ products, bannerData, bestSellingData }) => {
+  console.log(bestSellingData);
   const { data: session } = useSession();
 
   console.log('session', session);
@@ -23,13 +24,21 @@ const Home = ({ products, bannerData }) => {
         <h3>Guest User</h3>
       )}
 
-      <div className="products-heading">
-        <h2>Best Selling Products</h2>
-        <p>Fabrics of many variations</p>
+      <div>
+        <h2 className="block text-3xl font-extrabold sm:text-5xl text-center">
+          Best
+          <span className="font-extrabold text-purple-300">
+            {' '}
+            Selling Products
+          </span>
+        </h2>
+        <strong className="text-center block font-extrabold mt-2">
+          Fabrics of many variations
+        </strong>
       </div>
 
       <div className="products-container">
-        {products?.map((product) => (
+        {bestSellingData?.map((product) => (
           <Product key={product._id} product={product} />
         ))}
       </div>
@@ -50,8 +59,12 @@ export const getServerSideProps = async () => {
   const bannerQuery = '*[_type == "banner"]';
   const bannerData = await client.fetch(bannerQuery);
 
+  const bestSellingProductsQuery =
+    '*[_type == "product" && bestSelling == true]';
+  const bestSellingData = await client.fetch(bestSellingProductsQuery);
+
   return {
-    props: { products, bannerData },
+    props: { products, bannerData, bestSellingData },
   };
 };
 

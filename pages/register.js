@@ -4,14 +4,17 @@ import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import { register_validate } from '../lib/validate';
 import { BsGoogle, BsFillLockFill } from 'react-icons/bs';
+import { signIn, useSession } from 'next-auth/react';
+
+import ErrorAlert from '../components/ErrorAlert';
 
 export default function Contact() {
+  const { data: session, status } = useSession();
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
-      // firstName: '',
-      // lastName: '',
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -88,13 +91,16 @@ export default function Contact() {
   //     });
   // };
 
+  if (status === 'authenticated') {
+    router.push('/');
+  }
+
   return (
     <div>
-      <h1>Register form</h1>
       {/* {formSuccess ? (
         <div>{formSuccessMessage}</div>
       ) : ( */}
-      <form
+      {/* <form
         method="POST"
         action="/api/auth/signup"
         onSubmit={formik.handleSubmit}
@@ -164,16 +170,16 @@ export default function Contact() {
         )}
 
         <button type="submit">Sign Up</button>
-      </form>
+      </form> */}
       {/* )} */}
 
       {/* NEW UI CHANGES */}
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+            <h1 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Sign up for your free account
-            </h2>
+            </h1>
             <p className="mt-2 text-center text-sm text-gray-600">
               Or{' '}
               <Link href={'/login'}>
@@ -196,7 +202,7 @@ export default function Contact() {
                   className="mb-6 relative block w-full appearance-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 />
                 {formik.errors.firstName && formik.touched.firstName ? (
-                  <span>{formik.errors.firstName}</span>
+                  <ErrorAlert message={formik.errors.firstName} />
                 ) : (
                   <></>
                 )}
@@ -213,7 +219,7 @@ export default function Contact() {
                   className="mb-6 relative block w-full appearance-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 />
                 {formik.errors.lastName && formik.touched.lastName ? (
-                  <span>{formik.errors.lastName}</span>
+                  <ErrorAlert message={formik.errors.lastName} />
                 ) : (
                   <></>
                 )}
@@ -230,7 +236,7 @@ export default function Contact() {
                   className="mb-6 relative block w-full appearance-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 />
                 {formik.errors.email && formik.touched.email ? (
-                  <span>{formik.errors.email}</span>
+                  <ErrorAlert message={formik.errors.email} />
                 ) : (
                   <></>
                 )}
@@ -244,10 +250,10 @@ export default function Contact() {
                   placeholder="password"
                   {...formik.getFieldProps('password')}
                   required
-                  className="relative block w-full appearance-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="mb-6 relative block w-full appearance-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 />
                 {formik.errors.password && formik.touched.password ? (
-                  <span>{formik.errors.password}</span>
+                  <ErrorAlert message={formik.errors.password} />
                 ) : (
                   <></>
                 )}
@@ -265,7 +271,7 @@ export default function Contact() {
                 />
                 {formik.errors.confirmPassword &&
                 formik.touched.confirmPassword ? (
-                  <span>{formik.errors.confirmPassword}</span>
+                  <ErrorAlert message={formik.errors.confirmPassword} />
                 ) : (
                   <></>
                 )}

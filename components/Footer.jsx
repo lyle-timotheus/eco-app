@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { AiFillInstagram, AiOutlineTwitter } from 'react-icons/ai';
 
 const Footer = () => {
@@ -7,28 +8,33 @@ const Footer = () => {
       <div className="grid grid-cols-2 gap-8 px-6 py-8 md:grid-cols-4">
         <div>
           <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
-            Company
+            Products
           </h2>
           <ul className="text-gray-500 dark:text-gray-400">
             <li className="mb-4">
-              <a href="#" className=" hover:underline">
-                About
-              </a>
+              <Link href={`/products/muslin-blankets`}>
+                <a className="hover:underline">Muslin Blankets</a>
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="#" className="hover:underline">
-                Careers
-              </a>
+              <Link href={`/products/burp-cloths`}>
+                <a className="hover:underline">Burp Clots</a>
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="#" className="hover:underline">
-                Brand Center
-              </a>
+              <Link href={`/products/bandana-bibs`}>
+                <a className="hover:underline">Bandana Bibs</a>
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="#" className="hover:underline">
-                Blog
-              </a>
+              <Link href={`/products/dummy-clips`}>
+                <a className="hover:underline">Dummy Clips</a>
+              </Link>
+            </li>
+            <li className="mb-4">
+              <Link href={`/products/flannel-blankets`}>
+                <a className="hover:underline">Flannel Blankets</a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -111,9 +117,15 @@ const Footer = () => {
       </div>
       <div className="px-4 py-6  md:flex md:items-center md:justify-between">
         <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
-          © 2023 <a href="https://flowbite.com/">Flowbite™</a>. All Rights
+          © 2023 <a href="https://flowbite.com/">Zootylala</a>. All Rights
           Reserved.
         </span>
+        <Link href={'https://www.ciphercode.co.za'}>
+          <a className="text-sm text-gray-300 sm:text-center">
+            Design & Build By{' '}
+            <span className="font-extrabold">CipherCode Design Studios</span>
+          </a>
+        </Link>
         <div className="flex mt-4 space-x-6 sm:justify-center md:mt-0">
           <a
             href="#"

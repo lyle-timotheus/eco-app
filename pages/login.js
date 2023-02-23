@@ -2,14 +2,14 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { login_validate } from '../lib/validate';
 import { useRouter } from 'next/router';
-import { BsGoogle, BsFillLockFill } from 'react-icons/bs';
 
 import { useFormik } from 'formik';
 
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import ErrorAlert from '../components/ErrorAlert';
 
 const login = () => {
+  const { data: session, status } = useSession();
   const [error, setError] = useState('');
   const router = useRouter();
   const formik = useFormik({
@@ -23,6 +23,7 @@ const login = () => {
   });
 
   console.log(formik.errors);
+  console.log(status);
 
   async function onSubmit(values) {
     const status = await signIn('credentials', {
@@ -58,9 +59,12 @@ const login = () => {
     signIn('google', { callbackUrl: 'http://localhost:3000' });
   }
 
+  if (status === 'authenticated') {
+    router.push('/');
+  }
+
   return (
     <div>
-      {/* NEW UI */}
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
@@ -86,7 +90,7 @@ const login = () => {
                   placeholder="email"
                   {...formik.getFieldProps('email')}
                   required
-                  className="relative block w-full appearance-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="ml-[5px] relative block w-full appearance-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 />
                 {formik.errors.email && formik.touched.email ? (
                   <ErrorAlert message={formik.errors.email} />
@@ -151,7 +155,7 @@ const login = () => {
               name="emailSignIn"
               placeholder="email"
               {...formik.getFieldProps('emailSignIn')}
-              required
+              // required
               className="relative block w-full appearance-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
             />
             {formik.errors.emailSignIn && formik.touched.emailSignIn ? (
@@ -169,7 +173,6 @@ const login = () => {
           </form>
         </div>
       </div>
-      {/* NEW UI END */}
     </div>
   );
 };
