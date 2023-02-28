@@ -7,6 +7,7 @@ import {
   AiOutlineStar,
 } from 'react-icons/ai';
 import { Product } from '../../components';
+import AlsoLikeTracker from '../../components/AlsoLikeTracker';
 
 import { useStateContext } from '../../context/StateContext';
 
@@ -73,15 +74,19 @@ const ProductDetails = ({ product, products }) => {
               </span>
             </p>
           </div>
-          <div className="buttons">
+          <div className="flex mt-4">
             <button
               type="button"
-              className="add-to-cart"
+              className="bg-white mr-2 group relative flex justify-center rounded-md border-indigo-600 px-12 py-3 text-sm font-medium text-black hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               onClick={() => onAdd(product, qty)}
             >
               Add to Cart
             </button>
-            <button type="button" className="buy-now" onClick={handleBuyNow}>
+            <button
+              type="button"
+              className="mr-2 group relative flex justify-center rounded-md border border-transparent bg-indigo-600 px-12 py-3 text-sm text-white font-medium hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              onClick={handleBuyNow}
+            >
               Buy Now
             </button>
           </div>
@@ -92,7 +97,7 @@ const ProductDetails = ({ product, products }) => {
         <div className="marquee">
           <div className="maylike-products-container track">
             {products.map((item) => (
-              <Product key={item._id} product={item} />
+              <AlsoLikeTracker key={item._id} product={item} />
             ))}
           </div>
         </div>

@@ -7,10 +7,8 @@ import ContactBanner from '../components/ContactBanner';
 import WhyUs from '../components/WhyUs';
 
 const Home = ({ products, bannerData, bestSellingData }) => {
-  console.log(bestSellingData);
   const { data: session } = useSession();
 
-  console.log('session', session);
   return (
     <>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
@@ -21,10 +19,10 @@ const Home = ({ products, bannerData, bestSellingData }) => {
           <h3>{session.user.name}</h3> <h3>{session.user.email}</h3>
         </div>
       ) : (
-        <h3>Guest User</h3>
+        ''
       )}
 
-      <div>
+      <div className="mt-16">
         <h2 className="block text-3xl font-extrabold sm:text-5xl text-center">
           Best
           <span className="font-extrabold text-purple-300">
@@ -37,10 +35,12 @@ const Home = ({ products, bannerData, bestSellingData }) => {
         </strong>
       </div>
 
-      <div className="products-container">
-        {bestSellingData?.map((product) => (
-          <Product key={product._id} product={product} />
-        ))}
+      <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl">
+        <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          {bestSellingData?.map((product) => (
+            <Product key={product._id} product={product} />
+          ))}
+        </div>
       </div>
 
       <FooterBanner footerBanner={bannerData && bannerData[0]} />

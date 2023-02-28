@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import {
   IoIosStar,
   IoMdGift,
@@ -39,10 +40,9 @@ const WhyUs = () => {
   console.log(data);
   const card = data.map((item) => {
     return (
-      <a
+      <div
         key={item.title}
         className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
-        href="/accountant"
       >
         <span className="inline-block rounded-lg bg-gray-50 p-3">
           {item.icon}
@@ -53,7 +53,7 @@ const WhyUs = () => {
         <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
           {item.text}
         </p>
-      </a>
+      </div>
     );
   });
   return (
@@ -75,12 +75,11 @@ const WhyUs = () => {
               aliquid tempora. Obcaecati, autem.
             </p>
 
-            <a
-              href="#"
-              className="mt-8 inline-block rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
-            >
-              Get Started Today
-            </a>
+            <Link href={'/products'}>
+              <a className="mt-8 inline-block rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400">
+                Get Started Today
+              </a>
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">{card}</div>

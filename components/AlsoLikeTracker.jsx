@@ -3,7 +3,9 @@ import Link from 'next/link';
 
 import { urlFor } from '../lib/client';
 
-const Product = ({ product: { image, name, slug, price, details } }) => {
+const AlsoLikeTracker = ({
+  product: { image, name, slug, price, details },
+}) => {
   return (
     <div>
       <Link href={`/product/${slug.current}`}>
@@ -13,16 +15,12 @@ const Product = ({ product: { image, name, slug, price, details } }) => {
               src={urlFor(image && image[0])}
               width={250}
               height={250}
-              className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+              className="h-full object-cover object-center lg:h-full"
             />
           </div>
-          <div className="mt-4 flex justify-between">
+          <div className="mt-4">
             <div>
-              <h3 className="text-sm text-gray-700">{name}</h3>
-              <p className="mt-1 text-sm text-gray-500">{details}</p>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-gray-900">R{price}</p>
+              <h3 className="text-sm text-gray-700 text-center">{name}</h3>
             </div>
           </div>
         </div>
@@ -31,4 +29,4 @@ const Product = ({ product: { image, name, slug, price, details } }) => {
   );
 };
 
-export default Product;
+export default AlsoLikeTracker;

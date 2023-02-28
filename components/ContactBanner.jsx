@@ -27,7 +27,7 @@ const ContactBanner = () => {
               </a>
             </Link>
 
-            <Link href={'/contact'}>
+            <Link href={'/about'}>
               <a className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-indigo-600 shadow hover:text-indigo-700 focus:outline-none focus:ring active:text-indigo-500 sm:w-auto">
                 Learn More
               </a>

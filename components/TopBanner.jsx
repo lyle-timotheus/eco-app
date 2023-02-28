@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const TopBanner = () => {
   return (
@@ -49,12 +50,11 @@ const TopBanner = () => {
           </svg>
           See what is coming next for us.
         </p>
-        <a
-          href="#"
-          className="flex-none rounded-md bg-gray-900 py-1 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-        >
-          Winter Promotion <span aria-hidden="true">&rarr;</span>
-        </a>
+        <Link href="/promotions">
+          <a className="flex-none rounded-md bg-gray-900 py-1 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">
+            Winter Promotion <span aria-hidden="true">&rarr;</span>
+          </a>
+        </Link>
       </div>
     </div>
   );

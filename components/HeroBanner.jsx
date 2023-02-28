@@ -6,7 +6,7 @@ const HeroBanner = ({ heroBanner }) => {
   return (
     <div className="hero-banner-container bg-purple-300">
       <div>
-        <p className="beats-solo">{heroBanner.smallText}</p>
+        <p className="text-lg font-bold">{heroBanner.smallText}</p>
         <h3>{heroBanner.midText}</h3>
         <h1>{heroBanner.largeText1}</h1>
         <img
@@ -25,8 +25,8 @@ const HeroBanner = ({ heroBanner }) => {
             </button>
           </Link>
           <div className="desc">
-            <h5>Zootylala</h5>
-            <p>{heroBanner.desc}</p>
+            <h5>Zootylala Designs</h5>
+            <p className="text-gray-600 font-light">{heroBanner.desc}</p>
           </div>
         </div>
       </div>

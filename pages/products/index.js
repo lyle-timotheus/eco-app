@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { client, urlFor } from '../../lib/client';
 import imageUrlBuilder from '@sanity/image-url';
@@ -39,10 +40,12 @@ const products = ({ categories }) => {
                   )}
                 </div>
                 <h3 className="mt-6 text-sm text-gray-500">
-                  <a href={`/products/${item.slug.current}`}>
-                    <span className="absolute inset-0" />
-                    {item.name}
-                  </a>
+                  <Link href={`/products/${item.slug.current}`}>
+                    <a>
+                      <span className="absolute inset-0" />
+                      {item.name}
+                    </a>
+                  </Link>
                 </h3>
               </div>
             ))}
